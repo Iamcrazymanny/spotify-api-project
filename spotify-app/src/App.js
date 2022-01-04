@@ -30,21 +30,18 @@ class App extends Component {
     return hashParams;
   }
 
-
-componentDidMount() {
+ componentDidMount() {
     const requestOptions = {
         method: 'POST',
-        header: { 
-                   'Authorization':  'Bearer + token',
-                   'Content-Type': 'application/json'
+        headers: { 
+                   'Content-Type': 'application/json',
+                   'Authorization': 'Bearer token'
                    
          },
 
-        body: {
-        "name": "New Playlist"
-        }
+        body: JSON.stringify({ title: 'CreatePlaylistTest' })
     };
-    fetch('https://api.spotify.com/v1/users/user_id/playlists', requestOptions)
+    fetch('https://api.spotify.com/v1/users/12141627583/playlists', requestOptions)
         .then(response => response.json())
         .then(data => this.setState({ postId: data.id }));
 }
@@ -61,7 +58,6 @@ componentDidMount() {
         });
       })
   }
-
 
 //Displays my 5 playlists. 
 

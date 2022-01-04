@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+Node.js and React will be used to launch this project.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+STEP ONE: OBTAIN CLIENT ID AND CLIENT SECRET
 
-## Available Scripts
+Go to https://developer.spotify.com/dashboard/applications and create an app. This is going to give you your client_id and client_secret needed to authenticate your account with spotify.
 
-In the project directory, you can run:
+Go to edit settings and add 'http://localhost:8888/callback' under "Redirect URIs"
 
-### `npm start`
+STEP TWO: CREATE AUTHENTICATION SERVER
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In the terminal, type git clone https://github.com/spotify/web-api-auth-examples auth-server
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Make sure to install the dependencies with npm install
 
-### `npm test`
+Open the code in your text editor and navigate to authorization_code/app.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Copy and paste your unique client_id and client_secret here to lines 16-17
 
-### `npm run build`
+Our redirect_uri is going to be 'http://localhost:8888/callback' on line 18
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+We will also need to add to our scope on line 49 to give Spotify access to information required to run the app.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+We will add 'playlist-modify-public' and 'user-read-playback-state' to the scope.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The last thing we need to add is on line 107. Our redirect is going to be 'http://localhost:3000/#'
 
-### `npm run eject`
+This will redirect us back to our react app once we have authenticated our spotify account.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+STEP 3: LAUNCH REACT APP
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In the terminal, type git clone https://github.com/Iamcrazymanny/spotify-api-project.git spotify-app to clone my project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Make sure to install the dependencies with npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Navigate to the project in your terminal and type npm start
 
-## Learn More
+STEP 4: LAUNCH AUTHENTICATION SERVER
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In a new terminal window, navigate to your auth-server in your working directory and type node authorization_code/app.js to launch the authentication server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+STEP 5: USING THE APP
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+In your browser, make sure to Login to Spotify first before using the apps features. Make sure a song is playing on your spotify account before pressing the "Check Now Playing" button.
